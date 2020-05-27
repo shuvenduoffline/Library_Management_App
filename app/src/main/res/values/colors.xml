@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF6EA1</color>
+    <color name="colorPrimaryDark">#FF6EA1</color>
+    <color name="colorAccent">#FF6EA1</color>
+
+<!--    my define colors -->
+    <color name="lightBlack">#F6F8F9</color>
+    <color name="white">#FFFF</color>
+
+</resources>
