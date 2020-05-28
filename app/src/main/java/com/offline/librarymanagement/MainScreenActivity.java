@@ -1,6 +1,7 @@
 package com.offline.librarymanagement;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,8 +24,11 @@ public class MainScreenActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+      //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        // To hide Appp Bar
         NavigationUI.setupWithNavController(navView, navController);
+
     }
+
 
 }
