@@ -1,4 +1,4 @@
-package com.offline.librarymanagement;
+package com.offline.librarymanagement.ui.bookadd;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.offline.librarymanagement.R;
 
 
 public class BookAddFragment extends Fragment {

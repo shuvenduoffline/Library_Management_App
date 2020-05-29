@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
         //start the main screen
         startActivity(new Intent(getApplicationContext(),MainScreenActivity.class));
+        finish();
 
     }
 }

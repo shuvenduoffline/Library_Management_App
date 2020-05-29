@@ -47,17 +47,5 @@ public class NotificationsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        FirebaseFirestore fb = FirebaseFirestore.getInstance();
-        fb.collection("BooksCollection").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Toast.makeText(getActivity().getApplicationContext(), ""+task.toString(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity().getApplicationContext(), ""+task.getResult().getDocuments().get(0).get("author"), Toast.LENGTH_LONG).show();
-
-                Log.d("TAAAAAAG", "onComplete: "+task.getResult().getDocuments().get(0).get("author"));
-
-            }
-        });
-
     }
 }
