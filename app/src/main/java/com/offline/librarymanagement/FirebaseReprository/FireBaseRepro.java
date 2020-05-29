@@ -2,6 +2,7 @@ package com.offline.librarymanagement.FirebaseReprository;
 
 import android.util.Log;
 import android.util.Size;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -15,10 +16,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.offline.librarymanagement.Interfaces.onBookFetch;
 import com.offline.librarymanagement.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FireBaseRepro {
-    String TAG = "FirebaseRepro";
+    final String TAG = "FirebaseRepro";
     FirebaseFirestore fb = FirebaseFirestore.getInstance();
     CollectionReference booksRef = fb.collection("BooksCollection");
     onBookFetch book_listner;
@@ -27,14 +29,18 @@ public class FireBaseRepro {
         this.book_listner = listner;
     }
 
-    public void getBookslist(String search){
+    public void getBookslist(final String search){
 
-        if (search == null || search == "") {
+
+        // logd
+        Log.d(TAG, "getBookslist: "+search);
+        if (search == null || search.equals("")) {
             booksRef.orderBy("createdon").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     List<Book> booklist = queryDocumentSnapshots.toObjects(Book.class);
                     book_listner.onComplete(booklist);
+                    Log.d(TAG, "onSuccess: ");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -43,11 +49,12 @@ public class FireBaseRepro {
                 }
             });
         } else {
-            booksRef.whereArrayContains("keywords", search).orderBy("createdon").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            booksRef.whereArrayContains("keywords", search).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     List<Book> booklist = queryDocumentSnapshots.toObjects(Book.class);
                     book_listner.onComplete(booklist);
+                    Log.d(TAG, "onSuccess: "+search);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

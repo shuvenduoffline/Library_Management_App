@@ -22,24 +22,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-                <EditText
+            <EditText
+                android:id="@+id/search_input"
+                android:inputType="textFilter"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/text_input_coustom_layout"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:hint="  Search Books, Authors"
+                android:maxLines="1"
+                android:paddingLeft="25dp"
+                android:imeOptions="actionDone">
 
-                    android:layout_margin="20dp"
-                    android:layout_width="match_parent"
-                   android:paddingLeft="25dp"
-                    android:id="@+id/search_input"
-                    android:drawableLeft="@drawable/ic_search_black_24dp"
-                    android:background="@drawable/text_input_coustom_layout"
-                    android:hint="  Search Books, Authors"
-                    android:maxLines="1"
-                    android:layout_height="40dp">
-
-                </EditText>
+            </EditText>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/books_rv"
                 android:padding="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/loading_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+
 
         </LinearLayout>
     </ScrollView>
