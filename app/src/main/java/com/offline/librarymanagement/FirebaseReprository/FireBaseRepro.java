@@ -55,6 +55,8 @@ public class FireBaseRepro {
                     List<Book> booklist = queryDocumentSnapshots.toObjects(Book.class);
                     book_listner.onComplete(booklist);
                     Log.d(TAG, "onSuccess: "+search);
+                    Log.d(TAG, "onSuccess: "+booklist.isEmpty());
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

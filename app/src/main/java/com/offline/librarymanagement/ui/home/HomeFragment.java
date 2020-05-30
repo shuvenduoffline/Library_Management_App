@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView booksRv;
     private BooksAdapter adapter;
     private ImageView loadingImg;
+
+    public static final String TAG = "HomeFragment";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -70,8 +73,9 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+
                     showLoadingGif();
-                   queryBook(searchInput.getText().toString().trim());
+                    queryBook(searchInput.getText().toString().trim());
                 }
                 return false;
             }
@@ -89,6 +93,7 @@ public class HomeFragment extends Fragment {
     }
 
     void showLoadingGif(){
+        Log.d(TAG, "showLoadingGif: ");
             booksRv.setVisibility(View.GONE);
             loadingImg.setVisibility(View.VISIBLE);
         Glide
@@ -100,7 +105,7 @@ public class HomeFragment extends Fragment {
 
 
     private void updateBookRv(List<Book> books) {
-        if (books == null || books.isEmpty()) return;
+        if (books == null ) return;
         if( books.isEmpty()) {
             showNoResultFound();
             return;
@@ -118,5 +123,12 @@ public class HomeFragment extends Fragment {
 
     private void showNoResultFound() {
 
+        Glide
+                .with( getActivity().getApplicationContext() )
+                .load(R.drawable.ic_undraw_empty_xct9)
+                .centerInside()
+                .into( loadingImg );
+        booksRv.setVisibility(View.GONE);
+        loadingImg.setVisibility(View.VISIBLE);
     }
 }

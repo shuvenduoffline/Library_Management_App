@@ -9,6 +9,7 @@
     <color name="white">#FFFF</color>
 
     <color name="boldTextColor">#242126</color>
+    <color name="colorshadow">#BFC2C3</color>
 
 
 </resources>
