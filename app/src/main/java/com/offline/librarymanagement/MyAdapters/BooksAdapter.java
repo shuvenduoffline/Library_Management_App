@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.offline.librarymanagement.Interfaces.BookListOnClickEvent;
 import com.offline.librarymanagement.R;
 import com.offline.librarymanagement.model.Book;
 
@@ -18,11 +19,12 @@ import java.util.List;
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
     private List<Book> bookList;
     private Context mcontext;
+    private BookListOnClickEvent listner;
 
-
-    public BooksAdapter(List<Book> books, Context context) {
+    public BooksAdapter(List<Book> books, Context context, BookListOnClickEvent listner) {
         this.bookList = books;
         this.mcontext = context;
+        this.listner = listner;
 
     }
 
@@ -45,32 +47,37 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
         Book book = bookList.get(position);
         viewHolder.title.setText(book.getName());
         viewHolder.author.setText(book.getAuthor());
-        viewHolder.accn_no.setText("Acc No : "+book.getAccnumber());
-        viewHolder.call_no.setText("Call No : "+book.getCallnumber());
-        viewHolder.description.setText(book.getDetails());
-        viewHolder.book_count.setText("Issue : "+book.getIssued()+" Stock : "+book.getQuantity());
+        String description = book.getDetails().length() < 240 ? book.getDetails() : book.getDetails().substring(0,240) + " ...";
+        viewHolder.description.setText(description);
+
 
         Glide.with(mcontext)
                 .load(book.getImgurl())
                 .centerCrop()
                 .into(viewHolder.img);
 
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listner.bookListOnClickListener(bookList.get(position));
+            }
+        });
+
     }
+
+
 
     // inner class to hold a reference to each item of RecyclerView
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView title,author,call_no, accn_no, description,book_count;
+        public TextView title,author, description;
         public ImageView img;
 
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             title = (TextView) itemLayoutView.findViewById(R.id.book_title);
-            call_no = (TextView) itemLayoutView.findViewById(R.id.call_no);
             author = (TextView) itemLayoutView.findViewById(R.id.book_author_name);
-            accn_no = (TextView) itemLayoutView.findViewById(R.id.accn_number);
-            book_count = (TextView) itemLayoutView.findViewById(R.id.book_count);
             description = (TextView) itemLayoutView.findViewById(R.id.book_description);
             img = itemLayoutView.findViewById(R.id.book_image);
         }

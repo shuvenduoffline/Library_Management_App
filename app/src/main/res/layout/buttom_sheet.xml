@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:id="@+id/mybuttom_sheet"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:behavior_hideable="true"
+    app:behavior_skipCollapsed="true"
+    app:behavior_peekHeight="0dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:padding="20dp"
+            android:background="@color/lightBlack"
+            android:outlineSpotShadowColor="@color/boldTextColor"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="5dp"/>
+
+        <TextView
+            android:id="@+id/buttom_book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Object C++"
+            android:textColor="@color/boldTextColor"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/butttom_book_author_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/color_description_text"
+            android:gravity="center"
+            android:text="Shuvend Dhal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/butttom_book_call_accn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/color_description_text"
+            android:gravity="center"
+            android:text="Call No * Accn No"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/buttom_book_description"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/color_description_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is sample book description to show that this book is the awasome book ever written in c++, do you know how object is defined in c++ they are defined as a class instance. Ya I know you know it but there is some dummy available for that to ..." />
+
+        <Button
+            android:layout_margin="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:paddingLeft="40dp"
+            android:id="@+id/butttom_btn_issue_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Issue Book" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

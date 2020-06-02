@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.offline.librarymanagement.Interfaces.BookListOnClickEvent;
+import com.offline.librarymanagement.Interfaces.ShowBottomSheetListener;
 import com.offline.librarymanagement.MyAdapters.BooksAdapter;
 import com.offline.librarymanagement.R;
 import com.offline.librarymanagement.model.Book;
@@ -40,6 +43,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView booksRv;
     private BooksAdapter adapter;
     private ImageView loadingImg;
+    private ShowBottomSheetListener bottomSheetListener;
+
 
     public static final String TAG = "HomeFragment";
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,6 +55,12 @@ public class HomeFragment extends Fragment {
         booksRv = root.findViewById(R.id.books_rv);
         loadingImg = root.findViewById(R.id.loading_image);
         return root;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        bottomSheetListener = (ShowBottomSheetListener) context;
     }
 
     @Override
@@ -80,6 +91,8 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
+
 
     }
 
@@ -112,13 +125,27 @@ public class HomeFragment extends Fragment {
         }
         booksRv.setVisibility(View.VISIBLE);
         loadingImg.setVisibility(View.GONE);
-        adapter = new BooksAdapter(books, getActivity().getApplicationContext());
+
+        adapter = new BooksAdapter(books, getActivity().getApplicationContext(), new BookListOnClickEvent() {
+            @Override
+            public void bookListOnClickListener(Book book) {
+                ShowButtomSheet(book);
+            }
+
+        });
+
         booksRv.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         booksRv.setLayoutManager(mLayoutManager);
         booksRv.setItemAnimator(new DefaultItemAnimator());
         booksRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void ShowButtomSheet(Book book) {
+        //Show and hide the onclick listner
+        bottomSheetListener.showBottomSheet(book);
+
     }
 
     private void showNoResultFound() {

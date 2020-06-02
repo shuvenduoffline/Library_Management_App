@@ -10,6 +10,7 @@
 
     <color name="boldTextColor">#242126</color>
     <color name="colorshadow">#BFC2C3</color>
+    <color name="color_description_text">#3D4245</color>
 
 
 </resources>
